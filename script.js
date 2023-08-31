@@ -74,7 +74,8 @@ const videoDataLoad = async (categoryId) => {
     div.classList.add("card", "bg-base-100", "shadow-xl");
     div.innerHTML = `
         <figure>
-        <img class = "h-52 rounded-lg relative"
+        <div class = " relative">
+        <img class = "h-52 rounded-lg"
           src=${video?.thumbnail}
           alt="Shoes"
         />
@@ -83,6 +84,7 @@ const videoDataLoad = async (categoryId) => {
             ? `<p class = "text-xs absolute right-3 top-40 bg-black text-white px-2 py-1 rounded-lg">${hours}hrs ${minutes}min ago <p/>`
             : ""
         }
+        </div>
       </figure>
       <div class="card-body px-3">
       <div class="flex gap-3">
@@ -100,7 +102,7 @@ const videoDataLoad = async (categoryId) => {
         <p class = "font-semibold">${video?.authors[0]?.profile_name}</p>
         <p class = "font-semibold">${
           video?.authors[0]?.verified
-            ? `<image class = "w-16 h-10" src= "badge2.png" />`
+            ? `<image class = "w-5 h-5" src= "badge.png" />`
             : ""
         }</p>
         </div>
@@ -135,15 +137,17 @@ const sortVideo = (videoData) => {
     div.classList.add("card", "bg-base-100", "shadow-xl");
     div.innerHTML = `
         <figure>
-        <img class = "h-52 rounded-lg relative"
+        <div class = " relative">
+        <img class = "h-52 rounded-lg"
           src=${video?.thumbnail}
-          alt="Shoes"          
+          alt="Shoes"
         />
         ${
           time
-            ? `<p class = "absolute right-3 top-40 bg-black text-white px-2 py-1 rounded-lg">${hours}hrs ${minutes}min ago <p/>`
+            ? `<p class = "text-xs absolute right-3 top-40 bg-black text-white px-2 py-1 rounded-lg">${hours}hrs ${minutes}min ago <p/>`
             : ""
         }
+        </div>
       </figure>
       <div class="card-body px-3">
       <div class="flex gap-3">
@@ -161,7 +165,7 @@ const sortVideo = (videoData) => {
         <p class = "font-semibold">${video?.authors[0]?.profile_name}</p>
         <p class = "font-semibold">${
           video?.authors[0]?.verified
-            ? `<image class = "w-16 h-10" src= "badge2.png" />`
+            ? `<image class = "w-5 h-5" src= "badge.png" />`
             : ""
         }</p>
         </div>
