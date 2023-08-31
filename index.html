@@ -21,6 +21,7 @@
         </div>
         <div class="navbar-center">
           <button
+            onclick="sortVideo()"
             class="px-2 py-1 rounded-lg bg-slate-300 hover:bg-slate-200 ml-3 md:ml-0 text-xs md:text-base"
           >
             Sort by view
@@ -29,7 +30,7 @@
 
         <div class="navbar-end">
           <a
-            class="px-2 py-1 rounded-lg bg-[#FF1F3D] hover:bg-[#ff435c] text-white cursor-pointer text-xs md:text-base"
+            class="px-4 py-1 rounded-lg bg-[#FF1F3D] hover:bg-[#ff435c] text-white cursor-pointer text-xs md:text-base"
             >Blog</a
           >
         </div>
@@ -40,8 +41,44 @@
     <!-- main section started here  -->
     <main class="container mx-auto px-5">
       <!-- category -->
-      <div id="category-container" class="flex justify-center">
-        <!-- <button class="px-10">All</button> -->
+      <div id="category-container" class="flex justify-center"></div>
+      <div id="throw-error"></div>
+
+      <!-- show video data  -->
+      <div
+        id="video-container"
+        class="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+      >
+        <!-- <figure>
+        <img class = "h-52 rounded-lg"
+          src=${video.thumbnail}
+          alt="Shoes"
+        />
+      </figure>
+      <div class="card-body px-3">
+      <div class="flex gap-3">
+      first 
+      <div>
+        <img
+        class = "w-10 h-10 rounded-full object-cover" 
+        src=${video.authors[0].profile_picture}
+        alt="" />
+      </div>
+      second 
+      <div class = "flex flex-col">
+        <h3 class = "text-xl font-bold">${video.title}</h3>
+        <div class = "flex items-center mt-5">
+        <p>${video.authors[0].profile_name}</p>
+        <p>${
+          video.authors[0].verified
+            ? `<image class = "w-16 h-10" src= "badge2.png" />`
+            : ""
+        }</p>
+        <p>${video.others.views}</p>
+      </div>
+    </div>
+      </div>
+      </div> -->
       </div>
     </main>
 
