@@ -5,7 +5,6 @@ const loadCategoryData = async () => {
   );
   const data = await res.json();
   const categoryData = data.data;
-  //   console.log(categoryData);
   categories(categoryData);
 };
 loadCategoryData();
@@ -43,6 +42,11 @@ const videoDataLoad = async (categoryId) => {
   );
   const data = await res.json();
   const videoData = data.data;
+  //   sort btn called here
+  const sortBtn = document.getElementById("sort-btn");
+  sortBtn.addEventListener("click", () => {
+    sortVideo(videoData);
+  });
 
   const videoContainer = document.getElementById("video-container");
   const throwError = document.getElementById("throw-error");
@@ -61,14 +65,12 @@ const videoDataLoad = async (categoryId) => {
   }
 
   videoData.forEach((video) => {
-    console.log(video);
     const div = document.createElement("div");
     const time = +video.others.posted_date;
     const fullMinutes = time / 60;
     const hours = parseInt(fullMinutes / 60);
     const minutes = parseInt(fullMinutes % 60);
 
-    // console.log(hours, minutes);
     div.classList.add("card", "bg-base-100", "shadow-xl");
     div.innerHTML = `
         <figure>
@@ -78,7 +80,7 @@ const videoDataLoad = async (categoryId) => {
         />
         ${
           time
-            ? `<p class = "absolute right-3 top-40 bg-black text-white px-2 py-1 rounded-lg">${hours}hrs ${minutes}min ago <p/>`
+            ? `<p class = "text-xs absolute right-3 top-40 bg-black text-white px-2 py-1 rounded-lg">${hours}hrs ${minutes}min ago <p/>`
             : ""
         }
       </figure>
@@ -109,10 +111,65 @@ const videoDataLoad = async (categoryId) => {
         `;
     videoContainer.appendChild(div);
   });
-  //   console.log(videoData);
 };
 videoDataLoad("1000");
 
-const sortVideo = () => {
-  console.log("hello");
+// sort video function started here
+
+const sortVideo = (videoData) => {
+  const sorted = videoData.sort((videoA, videoB) => {
+    const viewA = parseFloat(videoA.others.views);
+    const viewB = parseFloat(videoB.others.views);
+
+    return viewB - viewA;
+  });
+  const videoContainer = document.getElementById("video-container");
+  videoContainer.innerHTML = "";
+
+  sorted.forEach((video) => {
+    const time = +video.others.posted_date;
+    const fullMinutes = time / 60;
+    const hours = parseInt(fullMinutes / 60);
+    const minutes = parseInt(fullMinutes % 60);
+    const div = document.createElement("div");
+    div.classList.add("card", "bg-base-100", "shadow-xl");
+    div.innerHTML = `
+        <figure>
+        <img class = "h-52 rounded-lg relative"
+          src=${video?.thumbnail}
+          alt="Shoes"          
+        />
+        ${
+          time
+            ? `<p class = "absolute right-3 top-40 bg-black text-white px-2 py-1 rounded-lg">${hours}hrs ${minutes}min ago <p/>`
+            : ""
+        }
+      </figure>
+      <div class="card-body px-3">
+      <div class="flex gap-3">
+      <!-- first  -->
+      <div>
+        <img
+        class = "w-10 h-10 rounded-full object-cover" 
+        src=${video?.authors[0]?.profile_picture}
+        alt="" />
+      </div>
+      <!-- second  -->
+      <div>
+        <h3 class = "text-xl font-bold">${video?.title}</h3>
+        <div class = "flex items-center mt-3">
+        <p class = "font-semibold">${video?.authors[0]?.profile_name}</p>
+        <p class = "font-semibold">${
+          video?.authors[0]?.verified
+            ? `<image class = "w-16 h-10" src= "badge2.png" />`
+            : ""
+        }</p>
+        </div>
+        <p class = "pt-2 font-semibold">${video?.others?.views}</p>
+    </div>
+      </div>
+  
+        `;
+    videoContainer.appendChild(div);
+  });
 };
