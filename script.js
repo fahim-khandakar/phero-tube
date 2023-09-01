@@ -6,9 +6,11 @@ const loadCategoryData = async () => {
   const data = await res.json();
   const categoryData = data.data;
   categories(categoryData);
+  videoDataLoad("1000");
 };
 loadCategoryData();
 
+let arr = [];
 // category data loaded by this function
 const categories = (categoryData) => {
   categoryData.forEach((category) => {
@@ -18,8 +20,7 @@ const categories = (categoryData) => {
       "px-3",
       "md:px-5",
       "py-1",
-      "md:py-2",
-      "rounded-lg",
+      "rounded-md",
       "bg-slate-300",
       "hover:bg-slate-200",
       "md:mx-10",
@@ -30,12 +31,15 @@ const categories = (categoryData) => {
       "md:text-base"
     );
     button.innerText = `${category?.category}`;
+    button.setAttribute("id", `${category?.category_id}`);
     button.setAttribute("onclick", `videoDataLoad(${category?.category_id})`);
     categoryContainer.appendChild(button);
+
+    const categoryBtn = document.getElementById(`${category?.category_id}`);
+    arr.push(categoryBtn);
   });
 };
 
-// video data loaded by this function
 const videoDataLoad = async (categoryId) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/videos/category/${categoryId}`
@@ -46,6 +50,23 @@ const videoDataLoad = async (categoryId) => {
   const sortBtn = document.getElementById("sort-btn");
   sortBtn.addEventListener("click", () => {
     sortVideo(videoData);
+  });
+
+  // active button
+  const categoryBtn = document.getElementById(`${categoryId}`);
+  arr.forEach((btn) => {
+    if (btn.classList.contains("bg-red-500")) {
+      btn.classList.remove("bg-red-500");
+      btn.classList.remove("text-white");
+      categoryBtn.classList.remove("hover:bg-slate-200");
+      categoryBtn.classList.add("bg-red-500");
+      categoryBtn.classList.add("text-white");
+    } else {
+      categoryBtn.classList.add("bg-red-500");
+      categoryBtn.classList.add("text-white");
+      categoryBtn.classList.remove("hover:bg-slate-200");
+      btn.classList.add("hover:bg-slate-200");
+    }
   });
 
   const videoContainer = document.getElementById("video-container");
@@ -114,14 +135,13 @@ const videoDataLoad = async (categoryId) => {
     videoContainer.appendChild(div);
   });
 };
-videoDataLoad("1000");
 
 // sort video function started here
 
 const sortVideo = (videoData) => {
   const sorted = videoData.sort((videoA, videoB) => {
-    const viewA = parseFloat(videoA.others.views);
-    const viewB = parseFloat(videoB.others.views);
+    const viewA = parseFloat(videoA?.others?.views);
+    const viewB = parseFloat(videoB?.others?.views);
 
     return viewB - viewA;
   });
@@ -129,7 +149,7 @@ const sortVideo = (videoData) => {
   videoContainer.innerHTML = "";
 
   sorted.forEach((video) => {
-    const time = +video.others.posted_date;
+    const time = +video?.others?.posted_date;
     const fullMinutes = time / 60;
     const hours = parseInt(fullMinutes / 60);
     const minutes = parseInt(fullMinutes % 60);
@@ -165,7 +185,7 @@ const sortVideo = (videoData) => {
         <p class = "font-semibold">${video?.authors[0]?.profile_name}</p>
         <p class = "font-semibold">${
           video?.authors[0]?.verified
-            ? `<image class = "w-5 h-5" src= "badge.png" />`
+            ? `<image class = "w-5 h-5" src= "./badge.png" />`
             : ""
         }</p>
         </div>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <!-- tailwind and daisy Ui link here  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="container mx-auto px-5">
+      <section class="flex flex-col w-full pt-5 items-center text-center">
+        <div>
+          <h1 class="text-xl font-semibold py-5 text-center">
+            <span class="text-xl font-bold">Q:</span> Discuss the scope of var,
+            let, and const
+          </h1>
+          <p>
+            <span class="text-lg font-medium">Ans: </span
+            ><span class="font-medium">var: </span>The scope of a var variable
+            is functional scope or global scope, depending on where they are
+            declared. <br />
+            <span class="font-medium">let: </span>The scope of a let variable is
+            block scope. This means that they are accessible only within the
+            block in which they are defined, such as a loop, conditional
+            statement, or a function. <br />
+            <span class="font-medium">const: </span>Variables declared with
+            const also have block scope similar to let, but they come with an
+            additional constraint: they are used to declare constants, which
+            means their value cannot be reassigned after the initial assignment.
+          </p>
+        </div>
+        <div>
+          <h1 class="text-xl font-semibold py-5">
+            <span class="text-xl font-bold">Q:</span> Tell us the use cases of
+            null and undefined
+          </h1>
+          <p>
+            <span class="text-lg font-medium">Ans: </span
+            ><span class="font-medium">undefined: </span>Undefined means the
+            variable has been declared, but its value has not been assigned.
+            <br />
+            <span class="font-medium">null: </span>Intentional Absence of Value:
+            null is often used to represent the intentional absence of any
+            object value or the absence of a value that should exist. It is
+            typically assigned to a variable to indicate that the variable is
+            intentionally empty or has no value.
+          </p>
+        </div>
+        <div>
+          <h1 class="text-xl font-semibold py-5">
+            <span class="text-xl font-bold">Q:</span> What do you mean by REST
+            API?
+          </h1>
+          <p>
+            <span class="text-lg font-medium">Ans:</span> An API, or application
+            programming interface, is a set of rules that define how
+            applications or devices can connect to and communicate with each
+            other. A REST API is an API that conforms to the design principles
+            of the REST, or representational state transfer architectural style.
+          </p>
+        </div>
+        <a
+          href="index.html"
+          class="my-10 px-4 py-1 rounded-md bg-[#FF1F3D] hover:bg-[#ff435c] text-white cursor-pointer text-xs md:text-base"
+          >Back To Home</a
+        >
+      </section>
+    </main>
+  </body>
+</html>
