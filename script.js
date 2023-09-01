@@ -10,7 +10,9 @@ const loadCategoryData = async () => {
 };
 loadCategoryData();
 
+// the array use for active button
 let arr = [];
+
 // category data loaded by this function
 const categories = (categoryData) => {
   categoryData.forEach((category) => {
@@ -40,6 +42,7 @@ const categories = (categoryData) => {
   });
 };
 
+// video data load function
 const videoDataLoad = async (categoryId) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/videos/category/${categoryId}`
@@ -85,6 +88,7 @@ const videoDataLoad = async (categoryId) => {
     throwError.appendChild(div);
   }
 
+  // video data loaded form here
   videoData.forEach((video) => {
     const div = document.createElement("div");
     const time = +video.others.posted_date;
@@ -92,7 +96,7 @@ const videoDataLoad = async (categoryId) => {
     const hours = parseInt(fullMinutes / 60);
     const minutes = parseInt(fullMinutes % 60);
 
-    div.classList.add("card", "bg-base-100", "shadow-xl");
+    div.classList.add("card", "bg-base-100");
     div.innerHTML = `
         <figure>
         <div class = " relative">
@@ -137,7 +141,6 @@ const videoDataLoad = async (categoryId) => {
 };
 
 // sort video function started here
-
 const sortVideo = (videoData) => {
   const sorted = videoData.sort((videoA, videoB) => {
     const viewA = parseFloat(videoA?.others?.views);
@@ -148,13 +151,14 @@ const sortVideo = (videoData) => {
   const videoContainer = document.getElementById("video-container");
   videoContainer.innerHTML = "";
 
+  // sorted by this forEach
   sorted.forEach((video) => {
     const time = +video?.others?.posted_date;
     const fullMinutes = time / 60;
     const hours = parseInt(fullMinutes / 60);
     const minutes = parseInt(fullMinutes % 60);
     const div = document.createElement("div");
-    div.classList.add("card", "bg-base-100", "shadow-xl");
+    div.classList.add("card", "bg-base-100");
     div.innerHTML = `
         <figure>
         <div class = " relative">
