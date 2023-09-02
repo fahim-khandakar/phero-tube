@@ -111,7 +111,7 @@ const videoDataLoad = async (categoryId) => {
         }
         </div>
       </figure>
-      <div class="card-body px-3">
+      <div class="py-5 px-3">
       <div class="flex gap-3">
       <!-- first  -->
       <div>
@@ -127,7 +127,7 @@ const videoDataLoad = async (categoryId) => {
         <p class = "font-semibold">${video?.authors[0]?.profile_name}</p>
         <p class = "font-semibold">${
           video?.authors[0]?.verified
-            ? `<image class = "w-5 h-5" src= "badge.png" />`
+            ? `<image class = "ml-2 w-5 h-5" src= "badge.png" />`
             : ""
         }</p>
         </div>
@@ -173,7 +173,7 @@ const sortVideo = (videoData) => {
         }
         </div>
       </figure>
-      <div class="card-body px-3">
+      <div class="py-5 px-3">
       <div class="flex gap-3">
       <!-- first  -->
       <div>
@@ -189,7 +189,7 @@ const sortVideo = (videoData) => {
         <p class = "font-semibold">${video?.authors[0]?.profile_name}</p>
         <p class = "font-semibold">${
           video?.authors[0]?.verified
-            ? `<image class = "w-5 h-5" src= "./badge.png" />`
+            ? `<image class = "ml-2 w-5 h-5" src= "./badge.png" />`
             : ""
         }</p>
         </div>
